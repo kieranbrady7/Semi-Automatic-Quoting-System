@@ -1,0 +1,52 @@
+---
+title: "Ard Precision (IRL) Ltd Quotation"
+output:
+  word_document: default
+  pdf_document: default
+  html_document:
+    df_print: paged
+date: "6/17/2020"
+params:
+  BD: NA
+  QN: NA
+  C: NA
+  TL: NA
+  QD: NA
+  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Quotation Reference No: `r params$QN`
+****
+### Customer: `r params$C`
+***
+### Job Description:
+`r params$QD`
+
+
+***
+
+```{r , message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE, fig.width=20}
+
+library(flextable)
+library(magrittr)
+df1<- params$BD 
+df1 %>% regulartable() %>% autofit() %>% 
+  width(j=~Item, width = 2) %>% width(j=~Qty, width = 1) %>% width(j=~Euro, width = 1)
+
+
+
+```
+
+***
+
+```{r , message=FALSE, warning=FALSE, paged.print=FALSE, echo=FALSE}
+
+library(flextable)
+library(magrittr)
+df2<- params$TL 
+df2 %>% regulartable(col_keys = names(df2)) %>% autofit()  %>% width(j=~Totals, width = 3) %>% width(j=~Euro, width = 1)
+```
